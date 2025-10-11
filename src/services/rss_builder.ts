@@ -20,9 +20,6 @@ export const buildRssFeed = (data: ChannelData): string => {
     copyright: `All rights reserved ${new Date().getFullYear()}, ${data.info.author}`,
     updated: new Date(),
     generator: 'Node.js Feed Generator by Code Expert',
-    feedLinks: {
-      rss2: `${data.info.link}/rss`,
-    },
     author: {
       name: data.info.author,
     },
@@ -30,8 +27,6 @@ export const buildRssFeed = (data: ChannelData): string => {
 
   data.items.forEach((item) => {
     let finalContent = item.contentHtml;
-
-    // --- START: 图片嵌入逻辑更新 ---
 
     // 如果存在图片，将它们转换为 <img> 标签字符串
     if (item.imageUrls.length > 0) {
@@ -43,14 +38,18 @@ export const buildRssFeed = (data: ChannelData): string => {
       finalContent = imagesHtml + finalContent;
     }
 
-    // --- END: 图片嵌入逻辑更新 ---
+    const finalContentWrapped = `
+      <div style="overflow-wrap: break-word; word-wrap: break-word;">
+        ${finalContent}
+      </div>
+    `;
 
     feed.addItem({
       title: item.title,
       id: item.link,
       link: item.link,
       description: '',
-      content: finalContent,
+      content: finalContentWrapped,
       author: [{ name: data.info.author }],
       date: item.date,
       // 将第一张图片作为 feed item 的主图，用于封面或摘要显示
