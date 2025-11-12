@@ -1,12 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"files.associations": {
-			"wrangler.json": "jsonc"
-		}
-	}
+  "folders": [
+    {
+      "path": ".",
+    },
+  ],
 }

@@ -40,7 +40,7 @@ export const fetchAsBrowser = async (targetUrl: string): Promise<Response> => {
     'Sec-Fetch-User': '?1',
     'Sec-Fetch-Dest': 'document',
     'Sec-Fetch-Site': 'none',
-    'Upgrade-Insecure-Requests': '1', // 告知服务器客户端更喜欢安全的（HTTPS）连接
+    'Upgrade-Insecure-Requests': '1',
   });
 
   console.info(`正在请求: ${targetUrl}`);
